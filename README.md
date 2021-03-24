@@ -16,7 +16,7 @@ Project that displayes live values from crypto currencies
 
 type npm start
 
-# Tech Stack
+# Tech Used
 
 -   React
 -   WebSockets
