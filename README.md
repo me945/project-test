@@ -2,7 +2,7 @@
 
 Description:
 
-Project that displayes live values from crypto currencies
+Project that displays live values of crypto currencies
 
 # Production
 
