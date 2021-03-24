@@ -5,6 +5,7 @@ const Form = ({ onAdd, idNum }) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
+
         if (!currencyName) {
             alert('Please add a currency name')
             return
@@ -16,26 +17,31 @@ const Form = ({ onAdd, idNum }) => {
     }
     return (
         <form onSubmit={onSubmit}>
-            <div>
-                <div className="md-6">
+            <div className="container w-25">
+                <div className="">
                     <label className="d-flex justify-content-center">
                         {'Currency:'}
                     </label>
                     <input
-                        className=" pl-4 "
                         type="text"
                         class="form-control"
                         placeholder="Enter currency name"
+                        value={currencyName}
+                        onChange={(e) => setCurrencyName(e.target.value)}
                     ></input>
                 </div>
-                <div
-                    className="d-flex justify-content-center pt-2 md-6"
-                    style={{ paddingLeft: '42  px' }}
+            </div>
+            <div
+                className="d-flex justify-content-center pt-2 md-6"
+                style={{ paddingLeft: '42  px' }}
+            >
+                <button
+                    type="submit"
+                    style={{ backgroundColor: 'grey', color: 'white' }}
+                    class="btn btn-primary"
                 >
-                    <button type="submit" class="btn btn-primary">
-                        Add Currency
-                    </button>
-                </div>
+                    Add Currency
+                </button>
             </div>
         </form>
     )
