@@ -24,19 +24,17 @@ function App() {
         },
     ])
     //Add random id
-    const [idNum, setIdNum] = useState(data.length)
+    const [idNum, setIdNum] = useState(data.length + 1)
 
     //Add fucntion
     const addItem = (setName) => {
         setData([...data, { id: setName.id, name: `${setName.name}` }])
-        setIdNum(data.length)
+        setIdNum(data.length + 1)
     }
 
     //Remove fucntion
     const removeItem = (id) => {
         setData(data.filter((item) => item.id !== id))
-
-        console.log(data)
 
         // setData(data.splice(objectIndex, 1))
     }

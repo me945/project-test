@@ -3,7 +3,10 @@ import { Button } from 'react-bootstrap'
 
 const CurrencyBlock = ({ name, id, onDelete }) => {
     const [cryptoValue, setCryptoValue] = useState()
-    const pricesWs = new WebSocket(`wss://ws.coincap.io/prices?assets=${name}`)
+
+    const Lname = name.toLowerCase()
+    console.log(Lname)
+    const pricesWs = new WebSocket(`wss://ws.coincap.io/prices?assets=${Lname}`)
 
     pricesWs.onmessage = function (msg) {
         var jsonMsg = JSON.parse(msg.data)
@@ -15,9 +18,6 @@ const CurrencyBlock = ({ name, id, onDelete }) => {
     }
     const currencyName = name.charAt(0).toUpperCase() + name.slice(1)
     return (
-        // <div>
-        //   Name: {name} id : {id}
-        // </div>
         <div
             className="bg-dark text-white  mt-3 ml-1 mr-1"
             style={{ width: '32%' }}
@@ -36,7 +36,11 @@ const CurrencyBlock = ({ name, id, onDelete }) => {
             </div>
             <div className="d-flex justify-content-end pb-2 pr-2">
                 <span
-                    style={{ cursor: 'pointer', color: 'grey' }}
+                    style={{
+                        cursor: 'pointer',
+                        color: 'grey',
+                        'text-decoration': 'underline',
+                    }}
                     onClick={() => onDelete(id)}
                 >
                     Remove
