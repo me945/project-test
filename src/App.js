@@ -3,6 +3,7 @@ import { useState } from 'react'
 import './App.css'
 import ListOfCurrencies from './components/ListOfCurrencies.js'
 import Header from './components/Header'
+import { renderIntoDocument } from 'react-dom/test-utils'
 function App() {
     const [data, setData] = useState([
         {
@@ -34,6 +35,10 @@ function App() {
     //Remove fucntion
     const removeItem = (id) => {
         setData(data.filter((item) => item.id !== id))
+
+        console.log(data)
+
+        // setData(data.splice(objectIndex, 1))
     }
     return (
         <div className="App">
@@ -41,7 +46,9 @@ function App() {
             {data.length > 0 ? (
                 <ListOfCurrencies onDelete={removeItem} data={data} />
             ) : (
-                'Add a currency'
+                <div className="d-flex justify-content-center pt-3 message">
+                    Add a currency
+                </div>
             )}
         </div>
     )

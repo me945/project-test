@@ -1,0 +1,26 @@
+$font-family: 'Helvetica, sans-serif';
+
+:root {
+    --fixed-width: 620px;
+    --transition: all 0.3s linear;
+    --radius: 0.25rem;
+    --clr-white: #fff;
+}
+.container {
+    width: 80vw;
+    max-width: var(--fixed-width);
+}
+
+.review {
+    background: var(--clr-white);
+    padding: 1.5rem 2rem;
+    border-radius: var(--radius);
+    /* box-shadow: var(--light-shadow); */
+    transition: var(--transition);
+    text-align: center;
+    font-family: Helvetica;
+}
+
+.message {
+    font-family: $font-family;
+}
