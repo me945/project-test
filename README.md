@@ -21,4 +21,3 @@ type npm start
 -   React
 -   WebSockets
 -   Prettier
--   Eslint
