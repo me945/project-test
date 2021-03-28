@@ -1,30 +1,48 @@
 import React, { useState } from 'react'
-import { Button } from 'react-bootstrap'
-
+import './styles.css'
 const CurrencyBlock = ({ name, id, onDelete }) => {
     const [cryptoValue, setCryptoValue] = useState()
-
     const Lname = name.toLowerCase()
-    console.log(Lname)
-    const pricesWs = new WebSocket(`wss://ws.coincap.io/prices?assets=${Lname}`)
+    const currencyName = name.charAt(0).toUpperCase() + name.slice(1)
 
-    pricesWs.onmessage = function (msg) {
-        var jsonMsg = JSON.parse(msg.data)
+    //let pricesWs = new WebSocket(`wss://ws.coincap.io/prices?assets=${Lname}`)
 
-        if (jsonMsg[name] !== undefined) {
-            setCryptoValue(jsonMsg[name])
-            console.log(jsonMsg[name])
+    const webConnect = () => {
+        const pricesWs = new WebSocket(
+            `wss://ws.coincap.io/prices?assets=${Lname}`
+        )
+
+        pricesWs.onclose = function (e) {
+            console.log(
+                'Socket is closed. Attemp to reconnet in 1 second.',
+                e.reason
+            )
+            setTimeout(function () {
+                webConnect()
+            }, 1000)
+        }
+
+        pricesWs.onerror = () => {
+            console.log(`Error in websocket${name}`)
+            console.log('Closing webSocket')
+            pricesWs.close()
+        }
+        pricesWs.onmessage = function (msg) {
+            var jsonMsg = JSON.parse(msg.data)
+
+            if (jsonMsg[name] !== undefined) {
+                setCryptoValue(jsonMsg[name])
+            }
         }
     }
-    const currencyName = name.charAt(0).toUpperCase() + name.slice(1)
+    webConnect()
+
     return (
-        <div
-            className="bg-dark text-white  mt-3 ml-1 mr-1"
-            style={{ width: '32%' }}
-        >
+        <div className="bg-dark text-white  mt-3 " style={{ width: '32%' }}>
             <div>
                 <div className="d-flex justify-content-start pt-2 pl-2">
                     <h2 style={{ fontSize: '20px' }}>{currencyName}</h2>
+                    <i class="bi bi-arrow-up"></i>
                 </div>
                 <div className="d-flex justify-content-start pl-2">
                     {' '}

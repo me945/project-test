@@ -3,7 +3,7 @@ import Currency from './CurrencyBlock.js'
 const ListOfCurrencies = ({ data, onDelete }) => {
     return (
         <div>
-            <div className="d-flex justify-content-between flex-row flex-wrap container review ">
+            <div className="d-flex justify-content-between flex-row flex-wrap container">
                 {data.map((item) => (
                     <Currency
                         onDelete={onDelete}

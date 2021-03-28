@@ -28,7 +28,8 @@ function App() {
 
     //Add fucntion
     const addItem = (setName) => {
-        setData([...data, { id: setName.id, name: `${setName.name}` }])
+        const id = Math.floor(Math.random() * 1000) + 1
+        setData([...data, { id: id, name: `${setName.name}` }])
         setIdNum(data.length + 1)
     }
 
@@ -39,7 +40,7 @@ function App() {
         // setData(data.splice(objectIndex, 1))
     }
     return (
-        <div className="App">
+        <div>
             <Header onAdd={addItem} idNum={idNum} />
             {data.length > 0 ? (
                 <ListOfCurrencies onDelete={removeItem} data={data} />

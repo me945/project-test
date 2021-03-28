@@ -2,15 +2,17 @@ import React, { useState } from 'react'
 
 const Form = ({ onAdd, idNum }) => {
     const [currencyName, setCurrencyName] = useState('')
+    const [showError, setShowError] = useState(false)
 
     const onSubmit = (e) => {
         e.preventDefault()
 
         if (!currencyName) {
-            alert('Please add a currency name')
+            //alert('Please add a currency name')
+            setShowError(true)
             return
         }
-
+        setShowError(false)
         onAdd({ id: idNum, name: currencyName })
 
         setCurrencyName('')
@@ -29,6 +31,17 @@ const Form = ({ onAdd, idNum }) => {
                         value={currencyName}
                         onChange={(e) => setCurrencyName(e.target.value)}
                     ></input>
+                    {showError ? (
+                        <small
+                            style={{
+                                color: 'red',
+                                fontSize: '12px',
+                                paddingLeft: '4px',
+                            }}
+                        >
+                            Please enter currency name
+                        </small>
+                    ) : null}
                 </div>
             </div>
             <div
